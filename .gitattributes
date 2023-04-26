@@ -1,0 +1,10 @@
+# vendored code扱いとすることで統計から除外
+windows/* linguist-vendored
+macos/* linguist-vendored
+linux/* linguist-vendored
+ios/* linguist-vendored
+android/* linguist-vendored
+web/* linguist-vendored
+
+*.freezed.dart linguist-generated=true
+*.g.dart linguist-generated=true
