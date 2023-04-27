@@ -5,6 +5,3 @@ linux/* linguist-vendored
 ios/* linguist-vendored
 android/* linguist-vendored
 web/* linguist-vendored
-
-*.freezed.dart linguist-generated=true
-*.g.dart linguist-generated=true
