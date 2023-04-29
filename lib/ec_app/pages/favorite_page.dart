@@ -1,9 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:murasame_playground/ec_app/utils/utils.dart';
+
+// Project imports:
 import 'package:murasame_playground/ec_app/providers/providers.dart';
+import 'package:murasame_playground/ec_app/utils/utils.dart';
 
 class FavoritePage extends ConsumerWidget {
   const FavoritePage({Key? key}) : super(key: key);
