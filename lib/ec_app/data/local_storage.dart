@@ -28,5 +28,22 @@ class LocalStorage {
         jsonEncode(products.map((product) => product.toJson()).toList());
     await prefs.setString('products', json);
   }
+
+  static Future<List<int>> getFavoriteIds() async {
+    final prefs = await SharedPreferences.getInstance();
+    final json = prefs.getString('favorite');
+
+    if (json == null) {
+      return [];
+    }
+
+    final favoriteList = jsonDecode(json) as List;
+    return favoriteList.map((favorite) => favorite as int).toList();
+  }
+
+  static Future<void> setFavoriteIds(List<int> productIds) async {
+    final prefs = await SharedPreferences.getInstance();
+    final json = jsonEncode(productIds);
+    await prefs.setString('favorite', json);
   }
 }
