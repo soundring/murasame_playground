@@ -10,8 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Project imports:
 import 'package:murasame_playground/ec_app/model/model.dart';
 
-const _key = 'products';
-
 class LocalStorage {
   static Future<List<Product>> getProductList() async {
     final sampleData =
@@ -28,6 +26,7 @@ class LocalStorage {
     final prefs = await SharedPreferences.getInstance();
     final json =
         jsonEncode(products.map((product) => product.toJson()).toList());
-    await prefs.setString(_key, json);
+    await prefs.setString('products', json);
+  }
   }
 }

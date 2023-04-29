@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product_list_state_provider.dart';
+part of 'product_list_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$productListHash() => r'fdd8555ceff2a627bba5800fdd453debaa9cbf01';
+String _$productListHash() => r'c5253b9de6549a21fcf99ad8436f7f78d6c67475';
 
 /// See also [ProductList].
 @ProviderFor(ProductList)
