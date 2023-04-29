@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:murasame_playground/ec_app/providers/favorite_list_provider.dart';
+import 'package:murasame_playground/ec_app/utils/utils.dart';
 
 class FavoriteButtonWidget extends HookConsumerWidget {
   const FavoriteButtonWidget({
@@ -30,6 +32,21 @@ class FavoriteButtonWidget extends HookConsumerWidget {
       color: const Color(0xFFFF7A72),
       onPressed: () {
         isSelected.value = !isSelected.value;
+        isSelected.value
+            ? ref
+                .read(favoriteListProvider.notifier)
+                .addFavorite(productId: productId)
+                .then((value) => showSnackbar(
+                      context: context,
+                      message: 'お気に入りに追加しました',
+                    ))
+            : ref
+                .read(favoriteListProvider.notifier)
+                .removeFavorite(productId: productId)
+                .then((value) => showSnackbar(
+                      context: context,
+                      message: 'お気に入りから削除しました',
+                    ));
       },
     );
   }
