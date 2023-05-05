@@ -20,7 +20,6 @@ Favorite _$FavoriteFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Favorite {
-  int get id => throw _privateConstructorUsedError;
   List<int> get favoriteProductIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +33,7 @@ abstract class $FavoriteCopyWith<$Res> {
   factory $FavoriteCopyWith(Favorite value, $Res Function(Favorite) then) =
       _$FavoriteCopyWithImpl<$Res, Favorite>;
   @useResult
-  $Res call({int id, List<int> favoriteProductIds});
+  $Res call({List<int> favoriteProductIds});
 }
 
 /// @nodoc
@@ -50,14 +49,9 @@ class _$FavoriteCopyWithImpl<$Res, $Val extends Favorite>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? favoriteProductIds = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       favoriteProductIds: null == favoriteProductIds
           ? _value.favoriteProductIds
           : favoriteProductIds // ignore: cast_nullable_to_non_nullable
@@ -73,7 +67,7 @@ abstract class _$$_FavoriteCopyWith<$Res> implements $FavoriteCopyWith<$Res> {
       __$$_FavoriteCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, List<int> favoriteProductIds});
+  $Res call({List<int> favoriteProductIds});
 }
 
 /// @nodoc
@@ -87,14 +81,9 @@ class __$$_FavoriteCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? favoriteProductIds = null,
   }) {
     return _then(_$_Favorite(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       favoriteProductIds: null == favoriteProductIds
           ? _value._favoriteProductIds
           : favoriteProductIds // ignore: cast_nullable_to_non_nullable
@@ -106,14 +95,12 @@ class __$$_FavoriteCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
-  _$_Favorite({required this.id, required final List<int> favoriteProductIds})
+  _$_Favorite({required final List<int> favoriteProductIds})
       : _favoriteProductIds = favoriteProductIds;
 
   factory _$_Favorite.fromJson(Map<String, dynamic> json) =>
       _$$_FavoriteFromJson(json);
 
-  @override
-  final int id;
   final List<int> _favoriteProductIds;
   @override
   List<int> get favoriteProductIds {
@@ -125,7 +112,7 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Favorite(id: $id, favoriteProductIds: $favoriteProductIds)';
+    return 'Favorite(favoriteProductIds: $favoriteProductIds)';
   }
 
   @override
@@ -133,7 +120,6 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Favorite'))
-      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('favoriteProductIds', favoriteProductIds));
   }
 
@@ -142,15 +128,14 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Favorite &&
-            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._favoriteProductIds, _favoriteProductIds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id,
-      const DeepCollectionEquality().hash(_favoriteProductIds));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_favoriteProductIds));
 
   @JsonKey(ignore: true)
   @override
@@ -167,14 +152,11 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
 }
 
 abstract class _Favorite implements Favorite {
-  factory _Favorite(
-      {required final int id,
-      required final List<int> favoriteProductIds}) = _$_Favorite;
+  factory _Favorite({required final List<int> favoriteProductIds}) =
+      _$_Favorite;
 
   factory _Favorite.fromJson(Map<String, dynamic> json) = _$_Favorite.fromJson;
 
-  @override
-  int get id;
   @override
   List<int> get favoriteProductIds;
   @override
