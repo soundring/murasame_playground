@@ -6,7 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:murasame_playground/ec_app/providers/favorite_list_provider.dart';
+import 'package:murasame_playground/ec_app/providers/providers.dart';
 import 'package:murasame_playground/ec_app/utils/utils.dart';
 
 class FavoriteButtonWidget extends HookConsumerWidget {
@@ -36,14 +36,14 @@ class FavoriteButtonWidget extends HookConsumerWidget {
         isSelected.value = !isSelected.value;
         isSelected.value
             ? ref
-                .read(favoriteListProvider.notifier)
+                .read(favoriteStateProvider.notifier)
                 .addFavorite(productId: productId)
                 .then((value) => showSnackbar(
                       context: context,
                       message: 'お気に入りに追加しました',
                     ))
             : ref
-                .read(favoriteListProvider.notifier)
+                .read(favoriteStateProvider.notifier)
                 .removeFavorite(productId: productId)
                 .then((value) => showSnackbar(
                       context: context,

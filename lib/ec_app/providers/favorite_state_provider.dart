@@ -5,10 +5,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:murasame_playground/ec_app/data/data.dart';
 import 'package:murasame_playground/ec_app/model/model.dart';
 
-part 'favorite_list_provider.g.dart';
+part 'favorite_state_provider.g.dart';
 
 @riverpod
-class FavoriteList extends _$FavoriteList {
+class FavoriteState extends _$FavoriteState {
   Future<List<Product>> _fetchFavoriteList() async {
     final productList = await LocalStorage.getProductList();
     final favoriteIds = await LocalStorage.getFavoriteIds();

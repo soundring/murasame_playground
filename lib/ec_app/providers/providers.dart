@@ -1,2 +1,2 @@
-export 'product_list_provider.dart';
-export 'favorite_list_provider.dart';
+export 'product_state_provider.dart';
+export 'favorite_state_provider.dart';

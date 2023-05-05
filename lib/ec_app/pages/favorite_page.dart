@@ -17,7 +17,7 @@ class FavoritePage extends ConsumerWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     final favoriteProductList =
-        ref.watch(favoriteListProvider).asData?.value ?? [];
+        ref.watch(favoriteStateProvider).asData?.value ?? [];
 
     if (favoriteProductList.isEmpty) {
       return const Center(
@@ -68,7 +68,7 @@ class FavoritePage extends ConsumerWidget {
                       ElevatedButton(
                         onPressed: () async {
                           ref
-                              .read(favoriteListProvider.notifier)
+                              .read(favoriteStateProvider.notifier)
                               .removeFavorite(
                                   productId: favoriteProductList[index].id)
                               .then((value) => showSnackbar(
