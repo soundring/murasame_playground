@@ -29,7 +29,7 @@ class CartState extends _$CartState {
       CartItem(product: product, quantity: 1)
     ];
 
-    await LocalStorage.setCartItemList(newCartItemList);
+    await LocalStorage.setCartItemList(cartItemList: newCartItemList);
     _updateState(newCartItemList);
   }
 

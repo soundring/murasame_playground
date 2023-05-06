@@ -43,7 +43,7 @@ class LocalStorage {
     return favoriteList.map((favorite) => favorite as int).toList();
   }
 
-  static Future<void> setFavoriteIds(List<int> productIds) async {
+  static Future<void> setFavoriteIds({required List<int> productIds}) async {
     final prefs = await SharedPreferences.getInstance();
     final json = jsonEncode(productIds);
     await prefs.setString('favorite', json);
@@ -64,10 +64,11 @@ class LocalStorage {
         .toList();
   }
 
-  static Future<void> setCartItemList(List<CartItem> cartItems) async {
+  static Future<void> setCartItemList(
+      {required List<CartItem> cartItemList}) async {
     final prefs = await SharedPreferences.getInstance();
     final json =
-        jsonEncode(cartItems.map((cartItem) => cartItem.toJson()).toList());
+        jsonEncode(cartItemList.map((cartItem) => cartItem.toJson()).toList());
     await prefs.setString('cart', json);
   }
 }

@@ -30,7 +30,7 @@ class FavoriteState extends _$FavoriteState {
   Future<void> addFavorite({required int productId}) async {
     final oldFavoriteIds = await LocalStorage.getFavoriteIds();
     final newFavoriteIds = [...oldFavoriteIds, productId];
-    await LocalStorage.setFavoriteIds(newFavoriteIds);
+    await LocalStorage.setFavoriteIds(productIds: newFavoriteIds);
     _updateState(await _fetchFavoriteList());
   }
 
@@ -38,7 +38,7 @@ class FavoriteState extends _$FavoriteState {
     final oldFavoriteIds = await LocalStorage.getFavoriteIds();
     final newFavoriteIds =
         oldFavoriteIds.where((id) => id != productId).toList();
-    await LocalStorage.setFavoriteIds(newFavoriteIds);
+    await LocalStorage.setFavoriteIds(productIds: newFavoriteIds);
     _updateState(await _fetchFavoriteList());
   }
 
