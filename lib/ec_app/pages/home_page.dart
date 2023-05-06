@@ -16,7 +16,7 @@ final List<String> _appBarTitle = ['ムラサメ家具', '検索', 'お気に入
 
 final List<Widget> _pageList = <Widget>[
   const ProductPage(),
-  const SearchPage(),
+  // const SearchPage(),
   const FavoritePage(),
   const CartPage(),
   const AccountPage()
@@ -27,10 +27,10 @@ const _bottomNavigationBarItem = <BottomNavigationBarItem>[
     icon: Icon(Icons.home),
     label: 'ホーム',
   ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.search),
-    label: '探す',
-  ),
+  // BottomNavigationBarItem(
+  //   icon: Icon(Icons.search),
+  //   label: '探す',
+  // ),
   BottomNavigationBarItem(
     icon: Icon(Icons.favorite),
     label: 'お気に入り',
