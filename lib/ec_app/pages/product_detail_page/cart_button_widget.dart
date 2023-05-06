@@ -1,7 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:murasame_playground/ec_app/providers/providers.dart';
 
-class CartButtonWidget extends StatelessWidget {
+class CartButtonWidget extends ConsumerWidget {
   const CartButtonWidget({
     Key? key,
     required this.productId,
@@ -10,7 +12,7 @@ class CartButtonWidget extends StatelessWidget {
   final int productId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return ElevatedButton(
@@ -20,8 +22,11 @@ class CartButtonWidget extends StatelessWidget {
           vertical: screenHeight * 0.025,
         ),
       ),
-      onPressed: () {
-        Navigator.of(context).pop();
+      onPressed: () async {
+        await ref
+            .read(cartStateProvider.notifier)
+            .addCartItem(productId: productId)
+            .then((value) => Navigator.of(context).pop());
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
