@@ -32,8 +32,7 @@ class CartButtonWidget extends ConsumerWidget {
           : () async {
               await ref
                   .read(cartStateProvider.notifier)
-                  .addCartItem(productId: productId)
-                  .then((value) => Navigator.of(context).pop());
+                  .addCartItem(productId: productId);
             },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
