@@ -31,55 +31,51 @@ class FavoritePage extends ConsumerWidget {
       itemBuilder: (BuildContext context, int index) {
         return Card(
           color: const Color(0xFFF4F4F0),
-          child: Column(
+          child: Row(
             children: [
-              Row(
+              SizedBox(
+                width: screenWidth * 0.5,
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Image.asset(
+                    favoriteProductList[index].imagePath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: screenWidth * 0.5,
-                    child: AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: Image.asset(
-                        favoriteProductList[index].imagePath,
-                        fit: BoxFit.cover,
-                      ),
+                  Text(
+                    favoriteProductList[index].name,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        favoriteProductList[index].name,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        '${favoriteProductList[index].price}円(税込)',
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Gap(18),
-                      ElevatedButton(
-                        onPressed: () async {
-                          ref
-                              .read(favoriteStateProvider.notifier)
-                              .removeFavorite(
-                                  productId: favoriteProductList[index].id)
-                              .then((value) => showSnackbar(
-                                  context: context, message: 'お気に入りから削除しました'));
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFFF7A72),
-                        ),
-                        child: const Text('お気に入りから削除'),
-                      ),
-                    ],
+                  Text(
+                    '${favoriteProductList[index].price}円(税込)',
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Gap(18),
+                  ElevatedButton(
+                    onPressed: () async {
+                      ref
+                          .read(favoriteStateProvider.notifier)
+                          .removeFavorite(
+                              productId: favoriteProductList[index].id)
+                          .then((value) => showSnackbar(
+                              context: context, message: 'お気に入りから削除しました'));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFFF7A72),
+                    ),
+                    child: const Text('お気に入りから削除'),
                   ),
                 ],
               ),
