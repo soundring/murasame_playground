@@ -95,7 +95,7 @@ class __$$_FavoriteCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
-  _$_Favorite({required final List<int> favoriteProductIds})
+  const _$_Favorite({required final List<int> favoriteProductIds})
       : _favoriteProductIds = favoriteProductIds;
 
   factory _$_Favorite.fromJson(Map<String, dynamic> json) =>
@@ -152,7 +152,7 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
 }
 
 abstract class _Favorite implements Favorite {
-  factory _Favorite({required final List<int> favoriteProductIds}) =
+  const factory _Favorite({required final List<int> favoriteProductIds}) =
       _$_Favorite;
 
   factory _Favorite.fromJson(Map<String, dynamic> json) = _$_Favorite.fromJson;
