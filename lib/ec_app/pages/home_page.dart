@@ -12,7 +12,7 @@ import 'favorite_page.dart';
 import 'product_page.dart';
 import 'search_page.dart';
 
-final List<String> _appBarTitle = ['ムラサメ家具', '検索', 'お気に入り', 'カート', 'アカウント'];
+final List<String> _appBarTitle = ['ムラサメ家具', 'お気に入り', 'カート', 'アカウント'];
 
 final List<Widget> _pageList = <Widget>[
   const ProductPage(),
