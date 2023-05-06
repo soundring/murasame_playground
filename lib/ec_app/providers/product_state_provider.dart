@@ -14,5 +14,5 @@ class ProductState extends _$ProductState {
   }
 
   @override
-  Future<List<Product>> build() => _fetchProductList();
+  Future<List<Product>> build() async => await _fetchProductList();
 }
