@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:murasame_playground/ec_app/model/model.dart';
 
 class LocalStorage {
+  // 商品
   static Future<List<Product>> getProductList() async {
     final sampleData =
         await rootBundle.loadString('lib/ec_app/sample_data/sample_data.json');
@@ -29,6 +30,7 @@ class LocalStorage {
     await prefs.setString('products', json);
   }
 
+  // お気に入り
   static Future<List<int>> getFavoriteIds() async {
     final prefs = await SharedPreferences.getInstance();
     final json = prefs.getString('favorite');
@@ -45,5 +47,27 @@ class LocalStorage {
     final prefs = await SharedPreferences.getInstance();
     final json = jsonEncode(productIds);
     await prefs.setString('favorite', json);
+  }
+
+  // カート
+  static Future<List<CartItem>> getCartItemList() async {
+    final prefs = await SharedPreferences.getInstance();
+    final json = prefs.getString('cart');
+
+    if (json == null) {
+      return [];
+    }
+
+    final cartItemList = jsonDecode(json) as List;
+    return cartItemList
+        .map((cartItem) => CartItem.fromJson(cartItem as Map<String, dynamic>))
+        .toList();
+  }
+
+  static Future<void> setCartItemList(List<CartItem> cartItems) async {
+    final prefs = await SharedPreferences.getInstance();
+    final json =
+        jsonEncode(cartItems.map((cartItem) => cartItem.toJson()).toList());
+    await prefs.setString('cart', json);
   }
 }
