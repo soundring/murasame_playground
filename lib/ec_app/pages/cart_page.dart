@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:murasame_playground/ec_app/providers/providers.dart';
+import 'package:murasame_playground/ec_app/utils/utils.dart';
 
 class CartPage extends ConsumerWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -102,8 +103,10 @@ class CartPage extends ConsumerWidget {
                               await ref
                                   .read(cartStateProvider.notifier)
                                   .removeCartItem(
-                                      productId:
-                                          cartItemList[index].product.id);
+                                      productId: cartItemList[index].product.id)
+                                  .then((value) => showSnackbar(
+                                      context: context,
+                                      message: 'カートから削除しました'));
                             },
                             child: const Text('カートから削除する')),
                         const Gap(8),

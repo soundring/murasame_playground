@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:murasame_playground/ec_app/providers/providers.dart';
+import 'package:murasame_playground/ec_app/utils/utils.dart';
 
 class CartButtonWidget extends ConsumerWidget {
   const CartButtonWidget({
@@ -36,7 +37,9 @@ class CartButtonWidget extends ConsumerWidget {
           : () async {
               await ref
                   .read(cartStateProvider.notifier)
-                  .addCartItem(productId: productId);
+                  .addCartItem(productId: productId)
+                  .then((value) =>
+                      showSnackbar(context: context, message: 'カートに追加しました'));
             },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
