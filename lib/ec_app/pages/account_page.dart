@@ -7,7 +7,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('AccountPage'),
+      child: Text('AccountPage(購入履歴ページにしようかな)'),
     );
   }
 }

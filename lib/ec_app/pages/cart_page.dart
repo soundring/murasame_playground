@@ -1,7 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
 import 'package:murasame_playground/ec_app/providers/providers.dart';
 
 class CartPage extends ConsumerWidget {
@@ -56,20 +60,7 @@ class CartPage extends ConsumerWidget {
                       ),
                     ),
                     const Gap(18),
-                    // ElevatedButton(
-                    //   onPressed: () async {
-                    //     ref
-                    //         .read(favoriteStateProvider.notifier)
-                    //         .removeFavorite(
-                    //             productId: cartItemList[index].product.id)
-                    //         .then((value) => showSnackbar(
-                    //             context: context, message: 'カートから削除しました'));
-                    //   },
-                    //   style: ElevatedButton.styleFrom(
-                    //     backgroundColor: const Color(0xFFFF7A72),
-                    //   ),
-                    //   child: const Text('カートから削除'),
-                    // ),
+                    // TODO カートから削除ボタンを追加する
                   ],
                 ),
               ],

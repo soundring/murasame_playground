@@ -1,11 +1,11 @@
 // Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import './product_state_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Project imports:
 import 'package:murasame_playground/ec_app/data/data.dart';
 import 'package:murasame_playground/ec_app/model/model.dart';
+import './product_state_provider.dart';
 
 part 'cart_state_provider.g.dart';
 
