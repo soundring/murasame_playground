@@ -25,7 +25,7 @@ class FavoriteState extends _$FavoriteState {
   }
 
   @override
-  Future<List<Product>> build() => _fetchFavoriteList();
+  Future<List<Product>> build() async => await _fetchFavoriteList();
 
   Future<void> addFavorite({required int productId}) async {
     final oldFavoriteIds = await LocalStorage.getFavoriteIds();

@@ -19,37 +19,45 @@ class FavoriteButtonWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isSelected = useState(false);
+    return ref.watch(favoriteStateProvider).when(
+        data: (favoriteList) {
+          final isSelected = useState(
+              favoriteList.any((favorite) => favorite.id == productId));
 
-    return IconButton(
-      icon: isSelected.value
-          ? const Icon(
-              Icons.favorite,
-              size: 32,
-            )
-          : const Icon(
-              Icons.favorite_border_outlined,
-              size: 32,
-            ),
-      color: const Color(0xFFFF7A72),
-      onPressed: () {
-        isSelected.value = !isSelected.value;
-        isSelected.value
-            ? ref
-                .read(favoriteStateProvider.notifier)
-                .addFavorite(productId: productId)
-                .then((value) => showSnackbar(
-                      context: context,
-                      message: 'お気に入りに追加しました',
-                    ))
-            : ref
-                .read(favoriteStateProvider.notifier)
-                .removeFavorite(productId: productId)
-                .then((value) => showSnackbar(
-                      context: context,
-                      message: 'お気に入りから削除しました',
-                    ));
-      },
-    );
+          return IconButton(
+            icon: isSelected.value
+                ? const Icon(
+                    Icons.favorite,
+                    size: 32,
+                  )
+                : const Icon(
+                    Icons.favorite_border_outlined,
+                    size: 32,
+                  ),
+            color: const Color(0xFFFF7A72),
+            onPressed: () async {
+              isSelected.value = !isSelected.value;
+              isSelected.value
+                  ? await ref
+                      .read(favoriteStateProvider.notifier)
+                      .addFavorite(productId: productId)
+                      .then((value) => showSnackbar(
+                            context: context,
+                            message: 'お気に入りに追加しました',
+                          ))
+                  : await ref
+                      .read(favoriteStateProvider.notifier)
+                      .removeFavorite(productId: productId)
+                      .then((value) => showSnackbar(
+                            context: context,
+                            message: 'お気に入りから削除しました',
+                          ));
+            },
+          );
+        },
+        loading: () => const CircularProgressIndicator(),
+        error: (e, s) {
+          return Text(e.toString());
+        });
   }
 }
