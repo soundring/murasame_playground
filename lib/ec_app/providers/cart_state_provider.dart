@@ -1,11 +1,9 @@
 // Package imports:
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Project imports:
 import 'package:murasame_playground/ec_app/data/data.dart';
 import 'package:murasame_playground/ec_app/model/model.dart';
-import './product_state_provider.dart';
 
 part 'cart_state_provider.g.dart';
 
@@ -35,5 +33,46 @@ class CartState extends _$CartState {
 
   _updateState(List<CartItem> cartItems) {
     state = AsyncValue.data(cartItems);
+  }
+
+  Future<void> removeCartItem({required int productId}) async {
+    final oldCartItemList = await LocalStorage.getCartItemList();
+    final newCartItemList = oldCartItemList
+        .where((cartItem) => cartItem.product.id != productId)
+        .toList();
+
+    await LocalStorage.setCartItemList(cartItemList: newCartItemList);
+    _updateState(newCartItemList);
+  }
+
+  Future<void> changeCartItemQuantity(
+      {required int productId, required int quantity}) async {
+    final oldCartItemList = await LocalStorage.getCartItemList();
+    final newCartItemList = oldCartItemList.map((cartItem) {
+      if (cartItem.product.id == productId) {
+        return cartItem.copyWith(quantity: quantity);
+      } else {
+        return cartItem;
+      }
+    }).toList();
+
+    await LocalStorage.setCartItemList(cartItemList: newCartItemList);
+    _updateState(newCartItemList);
+  }
+
+  int totalPrice() {
+    final cartItemList = state.asData?.value ?? [];
+    final totalPrice = cartItemList.fold(0, (sum, cartItem) {
+      return sum + cartItem.product.price * cartItem.quantity;
+    });
+    return totalPrice;
+  }
+
+  int totalQuantity() {
+    final cartItemList = state.asData?.value ?? [];
+    final totalQuantity = cartItemList.fold(0, (sum, cartItem) {
+      return sum + cartItem.quantity;
+    });
+    return totalQuantity;
   }
 }

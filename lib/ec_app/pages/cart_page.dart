@@ -23,51 +23,122 @@ class CartPage extends ConsumerWidget {
       );
     }
 
-    return Center(
-      child: ListView.builder(
-        itemCount: cartItemList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Row(
-              children: [
-                SizedBox(
-                  width: screenWidth * 0.5,
-                  child: AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: Image.asset(
-                      cartItemList[index].product.imagePath,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: cartItemList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                color: const Color(0xFFF4F4F0),
+                child: Row(
                   children: [
-                    Text(
-                      cartItemList[index].product.name,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    SizedBox(
+                      width: screenWidth * 0.5,
+                      child: AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Image.asset(
+                          cartItemList[index].product.imagePath,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                    Text(
-                      '${cartItemList[index].product.price}円(税込)',
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    const Gap(8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          cartItemList[index].product.name,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '${cartItemList[index].product.price}円(税込)',
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              '数量:',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Gap(8),
+                            DropdownButton(
+                                focusColor: Colors.white,
+                                value: cartItemList[index].quantity,
+                                items: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                    .map((int value) {
+                                  return DropdownMenuItem<int>(
+                                    value: value,
+                                    child: Text(value.toString()),
+                                  );
+                                }).toList(),
+                                onChanged: (int? value) async {
+                                  await ref
+                                      .read(cartStateProvider.notifier)
+                                      .changeCartItemQuantity(
+                                          productId:
+                                              cartItemList[index].product.id,
+                                          quantity: value!);
+                                }),
+                          ],
+                        ),
+                        const Gap(8),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF7A72),
+                            ),
+                            onPressed: () async {
+                              await ref
+                                  .read(cartStateProvider.notifier)
+                                  .removeCartItem(
+                                      productId:
+                                          cartItemList[index].product.id);
+                            },
+                            child: const Text('カートから削除する')),
+                        const Gap(8),
+                      ],
                     ),
-                    const Gap(18),
-                    // TODO カートから削除ボタンを追加する
                   ],
                 ),
-              ],
+              );
+            },
+          ),
+        ),
+        const Gap(8),
+        const Divider(),
+        const Gap(8),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'カートのアイテム ${ref.watch(cartStateProvider.notifier).totalQuantity()} 個',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          );
-        },
-      ),
+            Text(
+              '合計金額 ${ref.watch(cartStateProvider.notifier).totalPrice()}円(税込)',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const Gap(18),
+      ],
     );
   }
 }

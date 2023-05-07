@@ -43,6 +43,7 @@ class FavoritePage extends ConsumerWidget {
                   ),
                 ),
               ),
+              const Gap(8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

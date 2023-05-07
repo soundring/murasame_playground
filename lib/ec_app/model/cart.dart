@@ -17,17 +17,6 @@ class Cart with _$Cart {
   }) = _Cart;
 
   Cart._();
-
-  int get totalPrice => cartItemList.fold(
-        0,
-        (previousValue, newValue) =>
-            previousValue + newValue.quantity * newValue.product.price,
-      );
-
-  int get totalQuantity => cartItemList.fold(
-        0,
-        (previousValue, newValue) => previousValue + newValue.quantity,
-      );
 }
 
 @freezed
