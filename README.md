@@ -1,5 +1,5 @@
 # Flutterの実験場
 
-https://soundring.github.io/murasame_flutter_playground/#/
+https://soundring.github.io/murasame_playground/#/
 
 

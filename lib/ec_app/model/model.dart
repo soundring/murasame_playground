@@ -1,3 +1,3 @@
 export 'product.dart';
-export 'cart_item.dart';
+export 'cart.dart';
 export 'favorite.dart';

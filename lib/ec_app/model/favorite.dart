@@ -9,8 +9,7 @@ part 'favorite.g.dart';
 
 @freezed
 class Favorite with _$Favorite {
-  factory Favorite({
-    required int id,
+  const factory Favorite({
     required List<int> favoriteProductIds,
   }) = _Favorite;
 

@@ -19,7 +19,7 @@ class ProductDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final productList = ref.watch(productListProvider).asData?.value ?? [];
+    final productList = ref.watch(productStateProvider).asData?.value ?? [];
 
     if (productList.isEmpty) {
       return const Scaffold(

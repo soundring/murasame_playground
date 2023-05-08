@@ -6,20 +6,18 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'account_page.dart';
 import 'cart_page.dart';
 import 'favorite_page.dart';
 import 'product_page.dart';
 import 'search_page.dart';
 
-final List<String> _appBarTitle = ['ムラサメ家具', '検索', 'お気に入り', 'カート', 'アカウント'];
+final List<String> _appBarTitle = ['ムラサメ家具', 'お気に入り', 'カート'];
 
 final List<Widget> _pageList = <Widget>[
   const ProductPage(),
-  const SearchPage(),
+  // const SearchPage(),
   const FavoritePage(),
   const CartPage(),
-  const AccountPage()
 ];
 
 const _bottomNavigationBarItem = <BottomNavigationBarItem>[
@@ -27,10 +25,10 @@ const _bottomNavigationBarItem = <BottomNavigationBarItem>[
     icon: Icon(Icons.home),
     label: 'ホーム',
   ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.search),
-    label: '探す',
-  ),
+  // BottomNavigationBarItem(
+  //   icon: Icon(Icons.search),
+  //   label: '探す',
+  // ),
   BottomNavigationBarItem(
     icon: Icon(Icons.favorite),
     label: 'お気に入り',
@@ -38,10 +36,6 @@ const _bottomNavigationBarItem = <BottomNavigationBarItem>[
   BottomNavigationBarItem(
     icon: Icon(Icons.shopping_cart),
     label: 'カート',
-  ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.account_circle),
-    label: 'アカウント',
   ),
 ];
 

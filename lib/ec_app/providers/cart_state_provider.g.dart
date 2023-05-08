@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product_list_state_provider.dart';
+part of 'cart_state_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$productListHash() => r'fdd8555ceff2a627bba5800fdd453debaa9cbf01';
+String _$cartStateHash() => r'3b41eb01026044e077f35fbe418f9c0617fe4051';
 
-/// See also [ProductList].
-@ProviderFor(ProductList)
-final productListProvider =
-    AutoDisposeAsyncNotifierProvider<ProductList, List<Product>>.internal(
-  ProductList.new,
-  name: r'productListProvider',
+/// See also [CartState].
+@ProviderFor(CartState)
+final cartStateProvider =
+    AutoDisposeAsyncNotifierProvider<CartState, List<CartItem>>.internal(
+  CartState.new,
+  name: r'cartStateProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$productListHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$cartStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ProductList = AutoDisposeAsyncNotifier<List<Product>>;
+typedef _$CartState = AutoDisposeAsyncNotifier<List<CartItem>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

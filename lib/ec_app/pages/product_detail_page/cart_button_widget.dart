@@ -1,7 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-class CartButtonWidget extends StatelessWidget {
+// Package imports:
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
+import 'package:murasame_playground/ec_app/providers/providers.dart';
+import 'package:murasame_playground/ec_app/utils/utils.dart';
+
+class CartButtonWidget extends ConsumerWidget {
   const CartButtonWidget({
     Key? key,
     required this.productId,
@@ -10,8 +17,13 @@ class CartButtonWidget extends StatelessWidget {
   final int productId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final screenHeight = MediaQuery.of(context).size.height;
+
+    final cartItemList = ref.watch(cartStateProvider).asData?.value ?? [];
+    final isCartItem =
+        cartItemList.any((cartItem) => cartItem.product.id == productId);
+    final buttonText = isCartItem ? 'カートに追加済みです' : 'カートに入れる';
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -20,14 +32,20 @@ class CartButtonWidget extends StatelessWidget {
           vertical: screenHeight * 0.025,
         ),
       ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
+      onPressed: isCartItem
+          ? null
+          : () async {
+              await ref
+                  .read(cartStateProvider.notifier)
+                  .addCartItem(productId: productId)
+                  .then((value) =>
+                      showSnackbar(context: context, message: 'カートに追加しました'));
+            },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Icon(Icons.shopping_cart),
-          Text('カートに入れる'),
+        children: [
+          const Icon(Icons.shopping_cart),
+          Text(buttonText),
         ],
       ),
     );

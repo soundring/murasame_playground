@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 // Package imports:
 import 'package:go_router/go_router.dart';
@@ -9,13 +10,11 @@ const _productList = <Map<String, String>>[
   {
     'name': 'Todoアプリ',
     'path': '/todo_app',
-    'updatedAt': '2023/04/13',
     'accessible': 'true',
   },
   {
     'name': 'ECアプリ',
     'path': '/ec_app',
-    'updatedAt': '',
     'accessible': 'true',
   },
 ];
@@ -33,7 +32,9 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 20),
+          const Gap(20),
+          const Text('PWA対応　随時開発中'),
+          const Gap(20),
           const Text('環境', style: TextStyle(fontSize: 20)),
           Table(
             border: TableBorder.all(
@@ -56,7 +57,7 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const Gap(20),
           const Text('アプリ一覧',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           Expanded(
@@ -68,20 +69,20 @@ class HomePage extends StatelessWidget {
                       ? Colors.grey
                       : Colors.white,
                   child: ListTile(
-                    title: Text(
-                      _productList[index]['name']!,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    onTap: () {
-                      if (_productList[index]['accessible'] == 'false') return;
+                      title: Text(
+                        _productList[index]['name']!,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      onTap: () {
+                        if (_productList[index]['accessible'] == 'false') {
+                          return;
+                        }
 
-                      context.push(_productList[index]['path']!);
-                    },
-                    subtitle: (_productList[index]['accessible'] == 'true')
-                        ? const Text('クリックでアプリへ移動')
-                        : const Text('現在開発中です'),
-                    trailing: Text(_productList[index]['updatedAt']!),
-                  ),
+                        context.push(_productList[index]['path']!);
+                      },
+                      subtitle: (_productList[index]['accessible'] == 'true')
+                          ? const Text('タップでアプリへ移動')
+                          : const Text('現在開発中です')),
                 );
               },
             ),

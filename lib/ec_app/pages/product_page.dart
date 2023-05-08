@@ -16,7 +16,7 @@ class ProductPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final productList = ref.watch(productListProvider).asData?.value ?? [];
+    final productList = ref.watch(productStateProvider).asData?.value ?? [];
 
     final screenWidth = MediaQuery.of(context).size.width;
     final isTablet = screenWidth > 600;
