@@ -45,6 +45,11 @@ class CartState extends _$CartState {
     _updateState(newCartItemList);
   }
 
+  Future<void> clearCart() async {
+    await LocalStorage.setCartItemList(cartItemList: []);
+    _updateState([]);
+  }
+
   Future<void> changeCartItemQuantity(
       {required int productId, required int quantity}) async {
     final oldCartItemList = await LocalStorage.getCartItemList();

@@ -15,6 +15,7 @@ class CartPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     final cartItemList = ref.watch(cartStateProvider).asData?.value ?? [];
 
@@ -137,6 +138,55 @@ class CartPage extends ConsumerWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            const Gap(8),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF532305),
+                padding: EdgeInsets.symmetric(
+                  vertical: screenHeight * 0.02,
+                  horizontal: screenWidth * 0.25,
+                ),
+              ),
+              onPressed: () async {
+                final result = await showDialog<bool>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('注文を確定してよろしいですか？'),
+                      content: Text(
+                          '合計金額 ${ref.watch(cartStateProvider.notifier).totalPrice()}円(税込)\nサンプルなので実際には購入されません。'),
+                      actions: [
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context, true);
+                          },
+                          child: const Text(
+                            'はい',
+                            style: TextStyle(color: Color(0xFFFF7939)),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: const Text(
+                            'いいえ',
+                            style: TextStyle(color: Color(0xFFFF7939)),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+
+                if (result == true) {
+                  await ref.read(cartStateProvider.notifier).clearCart().then(
+                      (value) =>
+                          showSnackbar(context: context, message: '注文が確定しました'));
+                }
+              },
+              child: const Text('購入する'),
             ),
           ],
         ),
