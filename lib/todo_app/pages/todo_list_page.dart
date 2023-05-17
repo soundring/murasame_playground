@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -34,59 +35,65 @@ class TodoListPage extends HookConsumerWidget {
             ],
           ),
         ),
-        body: SafeArea(
-          child: TabBarView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                    child: ListView.builder(
-                        itemCount: uncompletedTodos.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TodoItem(todo: uncompletedTodos[index]),
-                            ),
-                          );
-                        })),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                    child: ListView.builder(
-                        itemCount: completedTodos.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TodoItem(todo: completedTodos[index]),
-                            ),
-                          );
-                        })),
-              ),
-            ],
-          ),
+        body: TabBarView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                  child: ListView.builder(
+                      itemCount: uncompletedTodos.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TodoItem(todo: uncompletedTodos[index]),
+                          ),
+                        );
+                      })),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                  child: ListView.builder(
+                      itemCount: completedTodos.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TodoItem(todo: completedTodos[index]),
+                          ),
+                        );
+                      })),
+            ),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-            foregroundColor: Colors.white,
-            onPressed: () async {
-              final titleController = TextEditingController();
-              await showCustomFormDialog(
-                context: context,
-                titleController: titleController,
-                dialogTitle: 'Todoの作成',
-                labelText: 'タイトル',
-                cancelButtonText: 'キャンセル',
-                submitButtonText: '作成',
-                onSubmitButtonPressed: () => ref
-                    .read(asyncTodoListProvider.notifier)
-                    .addTodo(title: titleController.text)
-                    .then((value) =>
-                        showSnackbar(context: context, message: 'Todoを作成しました')),
-              );
-            },
-            child: const Icon(Icons.add)),
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(
+              bottom: kIsWeb &&
+                      (defaultTargetPlatform == TargetPlatform.iOS ||
+                          defaultTargetPlatform == TargetPlatform.macOS)
+                  ? 20
+                  : 0),
+          child: FloatingActionButton(
+              foregroundColor: Colors.white,
+              onPressed: () async {
+                final titleController = TextEditingController();
+                await showCustomFormDialog(
+                  context: context,
+                  titleController: titleController,
+                  dialogTitle: 'Todoの作成',
+                  labelText: 'タイトル',
+                  cancelButtonText: 'キャンセル',
+                  submitButtonText: '作成',
+                  onSubmitButtonPressed: () => ref
+                      .read(asyncTodoListProvider.notifier)
+                      .addTodo(title: titleController.text)
+                      .then((value) => showSnackbar(
+                          context: context, message: 'Todoを作成しました')),
+                );
+              },
+              child: const Icon(Icons.add)),
+        ),
       ),
     );
   }
