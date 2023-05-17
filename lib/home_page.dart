@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 // Package imports:
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 // 作ったものの名前とURL
@@ -20,7 +20,7 @@ const _productList = <Map<String, String>>[
   {
     'name': 'SNSアプリ',
     'path': '/sns_app',
-    'accessible': 'false',
+    'accessible': 'true',
   },
 ];
 
