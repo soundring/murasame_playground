@@ -18,7 +18,7 @@ const _productList = <Map<String, String>>[
     'accessible': 'true',
   },
   {
-    'name': 'SNSアプリ',
+    'name': 'グループSNSアプリ',
     'path': '/sns_app',
     'accessible': 'true',
   },
