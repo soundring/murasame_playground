@@ -35,6 +35,9 @@ dependencies:
   json_annotation: ^4.8.0
   # コマンド： flutter pub run build_runner build --delete-conflicting-outputs
 
+  webview_flutter: ^4.2.2
+  universal_html: ^2.2.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

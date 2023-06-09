@@ -22,6 +22,11 @@ const _productList = <Map<String, String>>[
     'path': '/sns_app',
     'accessible': 'false',
   },
+  {
+    'name': '3Dモデルビュワー',
+    'path': '/model_viewer_app',
+    'accessible': 'true',
+  },
 ];
 
 class HomePage extends StatelessWidget {
