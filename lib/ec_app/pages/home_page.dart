@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -54,14 +55,22 @@ class EcAppHomePage extends HookConsumerWidget {
         backgroundColor: const Color(0xFFFF7939),
       ),
       body: _pageList[navigationIndex.value],
-      bottomNavigationBar: BottomNavigationBar(
-          items: _bottomNavigationBarItem,
-          currentIndex: navigationIndex.value,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: const Color(0xFFFF7939),
-          onTap: (index) {
-            navigationIndex.value = index;
-          }),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(
+            bottom: kIsWeb &&
+                    (defaultTargetPlatform == TargetPlatform.iOS ||
+                        defaultTargetPlatform == TargetPlatform.macOS)
+                ? 20
+                : 0),
+        child: BottomNavigationBar(
+            items: _bottomNavigationBarItem,
+            currentIndex: navigationIndex.value,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: const Color(0xFFFF7939),
+            onTap: (index) {
+              navigationIndex.value = index;
+            }),
+      ),
     );
   }
 }
