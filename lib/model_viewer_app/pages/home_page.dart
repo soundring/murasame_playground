@@ -14,14 +14,15 @@ class ModelViewerHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final isTablet = screenWidth > 600;
 
     if (kIsWeb) {
       // ignore: undefined_prefixed_name
       ui.platformViewRegistry.registerViewFactory(
         _viewId,
         (int viewId) => html.IFrameElement()
-          ..width = MediaQuery.of(context).size.width.toString()
-          ..height = MediaQuery.of(context).size.height.toString()
+          ..style.width = '${screenWidth}px'
+          ..style.height = '${screenHeight}px'
           ..src =
               'https://sketchfab.com/models/9120703a4aee4c2cb0313a9ca3e1e1a3/embed'
           ..style.border = 'none',
@@ -34,8 +35,7 @@ class ModelViewerHomePage extends StatelessWidget {
             backgroundColor: const Color(0xFFFF7939)),
         body: Center(
           child: SizedBox(
-            width: screenWidth * 0.8,
-            height: screenHeight * 0.8,
+            width: isTablet ? screenWidth * 0.5 : screenWidth,
             child: const HtmlElementView(
               viewType: _viewId,
             ),
