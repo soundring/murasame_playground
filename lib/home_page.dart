@@ -20,7 +20,7 @@ const _productList = <Map<String, String>>[
   {
     'name': 'グループSNSアプリ',
     'path': '/sns_app',
-    'accessible': 'true',
+    'accessible': 'false',
   },
 ];
 
