@@ -902,5 +902,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: "3.0.3"
-  flutter: ">=3.10.4"
+  dart: "3.0.5"
+  flutter: ">=3.10.5"

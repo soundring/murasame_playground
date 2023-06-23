@@ -56,13 +56,13 @@ class HomePage extends StatelessWidget {
               TableRow(
                 children: [
                   Center(child: Text('Flutterのバージョン')),
-                  Center(child: Text('3.10.4')),
+                  Center(child: Text('3.10.5')),
                 ],
               ),
               TableRow(
                 children: [
                   Center(child: Text('Dartのバージョン')),
-                  Center(child: Text('3.0.3')),
+                  Center(child: Text('3.0.5')),
                 ],
               ),
             ],
