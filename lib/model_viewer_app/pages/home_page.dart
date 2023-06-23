@@ -37,7 +37,7 @@ class ModelViewerHomePage extends HookWidget {
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-                '3Dモデルを表示します。\nsketchfab.comなどで3Dモデルを探してEmbed viewerのURLを入力してください。'),
+                '3Dモデルを表示します。\nsketchfab.comなどで3Dモデルを探してEmbed viewerのURLを入力してください。\n表示されない場合はリロードしてやり直してみてください。。'),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
