@@ -22,6 +22,11 @@ const _productList = <Map<String, String>>[
     'path': '/sns_app',
     'accessible': 'false',
   },
+  {
+    'name': '3Dモデルビュワー',
+    'path': '/model_viewer_app',
+    'accessible': 'true',
+  },
 ];
 
 class HomePage extends StatelessWidget {
@@ -51,13 +56,13 @@ class HomePage extends StatelessWidget {
               TableRow(
                 children: [
                   Center(child: Text('Flutterのバージョン')),
-                  Center(child: Text('3.10.0')),
+                  Center(child: Text('3.10.5')),
                 ],
               ),
               TableRow(
                 children: [
                   Center(child: Text('Dartのバージョン')),
-                  Center(child: Text('3.0.0')),
+                  Center(child: Text('3.0.5')),
                 ],
               ),
             ],

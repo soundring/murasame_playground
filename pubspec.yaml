@@ -6,8 +6,8 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: "3.0.0"
-  flutter: ^3.10.0
+  sdk: "3.0.5"
+  flutter: ^3.10.5
 
 dependencies:
   flutter:
@@ -34,6 +34,9 @@ dependencies:
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.0
   # コマンド： flutter pub run build_runner build --delete-conflicting-outputs
+
+  webview_flutter: ^4.2.2
+  universal_html: ^2.2.3
 
 dev_dependencies:
   flutter_test:
