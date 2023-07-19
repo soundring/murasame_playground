@@ -1,9 +1,14 @@
 // import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import "package:universal_html/html.dart" as html;
+
+// Dart imports:
 import 'dart:ui' as ui;
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import "package:universal_html/html.dart" as html;
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 const String _viewId = 'model_viewer';
@@ -15,7 +20,7 @@ class ModelViewerHomePage extends HookWidget {
   Widget build(BuildContext context) {
     final key = GlobalKey();
     final modelUrl = useState(
-        'https://sketchfab.com/models/9120703a4aee4c2cb0313a9ca3e1e1a3/embed');
+        'https://sketchfab.com/models/b07d263a7ab942e6935e77cd75bf1194/embed');
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
@@ -34,11 +39,6 @@ class ModelViewerHomePage extends HookWidget {
           backgroundColor: const Color(0xFFFF7939)),
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-                '3Dモデルを表示します。\nsketchfab.comなどで3Dモデルを探してEmbed viewerのURLを入力してください。\n表示されない場合はリロードしてやり直してみてください。。'),
-          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -86,12 +86,13 @@ class ModelViewerHomePage extends HookWidget {
       ),
     );
 
+    // final screenWidth = MediaQuery.of(context).size.width;
+    // final isTablet = screenWidth > 600;
     // final WebViewController controller = WebViewController();
     // controller
     //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
     //   ..setBackgroundColor(Colors.white)
-    //   ..loadRequest(Uri.parse(
-    //       'https://sketchfab.com/models/9120703a4aee4c2cb0313a9ca3e1e1a3/embed'));
+    //   ..loadRequest(Uri.parse('https://playcanv.as/p/1elceD1v/'));
     //
     // return Scaffold(
     //   appBar: AppBar(
