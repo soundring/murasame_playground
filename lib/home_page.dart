@@ -20,14 +20,19 @@ const _productList = <Map<String, String>>[
     'accessible': 'true',
   },
   {
-    'name': 'グループSNSアプリ',
+    'name': '3Dモデルビュワー',
+    'path': '/model_viewer_app',
+    'accessible': 'true',
+  },
+  {
+    'name': 'SNSアプリ',
     'path': '/sns_app',
     'accessible': 'false',
   },
   {
-    'name': '3Dモデルビュワー',
-    'path': '/model_viewer_app',
-    'accessible': 'true',
+    'name': '管理画面',
+    'path': '/sns_app',
+    'accessible': 'false',
   },
 ];
 
@@ -44,7 +49,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const Gap(10),
+          const Gap(8),
           const CircleAvatar(
             maxRadius: 60,
             backgroundImage: NetworkImage(
@@ -52,14 +57,14 @@ class HomePage extends StatelessWidget {
           ),
           const Text(
             'Murasame',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 20),
           ),
-          const Gap(10),
+          const Gap(8),
           const Text(
             'Web/Mobile App Developer',
             style: TextStyle(color: Colors.grey),
           ),
-          const Gap(10),
+          const Gap(8),
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -75,61 +80,84 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(10),
+          const Gap(8),
           const Text('最近、WebXRに可能性を感じています'),
           const Gap(20),
-          const Text('このサイトの環境', style: TextStyle(fontSize: 20)),
-          Table(
-            border: TableBorder.all(
-              color: Colors.black,
-              width: 1,
-              style: BorderStyle.solid,
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                const Text(
+                  '作ったアプリ一覧',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _productList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final accessible =
+                          _productList[index]['accessible'] == 'true';
+                      final name = _productList[index]['name']!;
+                      final path = _productList[index]['path']!;
+                      return Card(
+                        color: accessible ? Colors.white : Colors.grey,
+                        child: ListTile(
+                            title: Text(
+                              name,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            onTap: () {
+                              if (!accessible) {
+                                return;
+                              }
+
+                              context.push(path);
+                            },
+                            subtitle: accessible
+                                ? const Text('タップでアプリへ移動')
+                                : const Text('現在開発中です')),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            children: const [
-              TableRow(
-                children: [
-                  Center(child: Text('Flutterのバージョン')),
-                  Center(child: Text('3.10.5')),
-                ],
-              ),
-              TableRow(
-                children: [
-                  Center(child: Text('Dartのバージョン')),
-                  Center(child: Text('3.0.5')),
-                ],
-              ),
-            ],
           ),
           const Gap(20),
-          const Text('作ったアプリ一覧',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           Expanded(
-            child: ListView.builder(
-              itemCount: _productList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  color: _productList[index]['accessible'] == 'false'
-                      ? Colors.grey
-                      : Colors.white,
-                  child: ListTile(
-                      title: Text(
-                        _productList[index]['name']!,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  const Text('このサイトの環境', style: TextStyle(fontSize: 16)),
+                  Table(
+                    border: TableBorder.all(
+                      color: Colors.black,
+                      width: 1,
+                      style: BorderStyle.solid,
+                    ),
+                    children: const [
+                      TableRow(
+                        children: [
+                          Center(child: Text('Flutter')),
+                          Center(child: Text('3.10.5')),
+                        ],
                       ),
-                      onTap: () {
-                        if (_productList[index]['accessible'] == 'false') {
-                          return;
-                        }
-
-                        context.push(_productList[index]['path']!);
-                      },
-                      subtitle: (_productList[index]['accessible'] == 'true')
-                          ? const Text('タップでアプリへ移動')
-                          : const Text('現在開発中です')),
-                );
-              },
+                      TableRow(
+                        children: [
+                          Center(child: Text('Dart')),
+                          Center(child: Text('3.0.5')),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
+          const Gap(20),
         ],
       ),
     );
