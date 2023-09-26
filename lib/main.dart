@@ -9,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Project imports:
 import 'package:murasame_playground/ec_app/ec_app.dart';
 import 'package:murasame_playground/model_viewer_app/model_viewer_app.dart';
-import 'package:murasame_playground/sns_app/sns_app.dart';
 import 'package:murasame_playground/todo_app/todo_app.dart';
 import 'home_page.dart';
 
@@ -75,10 +74,6 @@ final _router = GoRouter(
                   ProductDetailPage(productId: state.params['id']!),
             ),
           ],
-        ),
-        GoRoute(
-          path: 'sns_app',
-          builder: (context, state) => const SnsAppHomePage(),
         ),
         GoRoute(
           path: 'model_viewer_app',

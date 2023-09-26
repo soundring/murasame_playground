@@ -24,16 +24,6 @@ const _productList = <Map<String, String>>[
     'path': '/model_viewer_app',
     'accessible': 'true',
   },
-  {
-    'name': 'SNSアプリ',
-    'path': '/sns_app',
-    'accessible': 'false',
-  },
-  {
-    'name': '管理画面',
-    'path': '/sns_app',
-    'accessible': 'false',
-  },
 ];
 
 class HomePage extends StatelessWidget {
